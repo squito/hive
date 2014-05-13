@@ -178,6 +178,26 @@
       <arg value="-I=${protobuf.src.dir}/org/apache/hadoop/hive/ql/io/orc"/>
       <arg value="${protobuf.src.dir}/org/apache/hadoop/hive/ql/io/orc/orc_proto.proto"/>
     </exec>
+    <!-- Note, only the first of these three files are actually compiled with protoc.
+         We chose this point to do the renaming for all of them out of convenience. -->
+    <exec executable="sed" failonerror="true">
+      <arg value="-i"/>
+      <arg value="./src/gen/protobuf/gen-java/org/apache/hadoop/hive/ql/io/orc/OrcProto.java"/>
+      <arg value="-e"/>
+      <arg value="s/com\.google\.protobuf\./com\.google\.protobuf_spark\./g"/>
+    </exec>
+    <exec executable="sed" failonerror="true">
+      <arg value="-i"/>
+      <arg value="./src/java/org/apache/hadoop/hive/ql/io/orc/WriterImpl.java"/>
+      <arg value="-e"/>
+      <arg value="s/com\.google\.protobuf\./com\.google\.protobuf_spark\./g"/>
+    </exec>
+    <exec executable="sed" failonerror="true">
+      <arg value="-i"/>
+      <arg value="./src/java/org/apache/hadoop/hive/ql/io/orc/ReaderImpl.java"/>
+      <arg value="-e"/>
+      <arg value="s/com\.google\.protobuf\./com\.google\.protobuf_spark\./g"/>
+    </exec>
   </target>
 
   <target name="ql-init">
