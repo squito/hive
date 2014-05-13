@@ -29,7 +29,7 @@
     <dependency org="org.antlr" name="antlr" rev="${antlr.version}" transitive="false"/>
     <dependency org="org.antlr" name="antlr-runtime" rev="${antlr-runtime.version}" transitive="false"/>
     <dependency org="org.antlr" name="ST4" rev="${ST4.version}" transitive="false"/><!-- manually added (antlr dep), bad POM -->
-    <dependency org="org.apache.hive" name="hive-serde" rev="${version}"
+    <dependency org="org.spark-project.hive" name="hive-serde" rev="${version}"
                 conf="compile->default" />
     <dependency org="com.jolbox" name="bonecp" rev="${BoneCP.version}">
         <exclude org="com.google.guava" module="guava"/>

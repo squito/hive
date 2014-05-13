@@ -26,15 +26,15 @@
     <include file="${ivy.conf.dir}/common-configurations.xml"/>
   </configurations>
   <dependencies>
-    <dependency org="org.apache.hive" name="hive-metastore" rev="${version}"
+    <dependency org="org.spark-project.hive" name="hive-metastore" rev="${version}"
                 conf="compile->default" />
     <dependency org="org.apache.mina" name="mina-core" rev="${mina.version}"
                 conf="test->default" />
-    <dependency org="org.apache.hive" name="hive-hbase-handler" rev="${version}"
+    <dependency org="org.spark-project.hive" name="hive-hbase-handler" rev="${version}"
                 conf="test->default" transitive="false"/>
-    <dependency org="org.apache.hive" name="hive-contrib" rev="${version}"
+    <dependency org="org.spark-project.hive" name="hive-contrib" rev="${version}"
                 conf="test->default" transitive="false"/>
-    <dependency org="org.apache.hive" name="hive-testutils" rev="${version}"
+    <dependency org="org.spark-project.hive" name="hive-testutils" rev="${version}"
                 conf="test->default" transitive="false"/>
     <dependency org="org.apache.hbase" name="hbase" rev="${hbase.version}"
                 conf="test->default" transitive="false">
