@@ -1,6 +1,7 @@
 This is a version of Hive 0.12 that uses the Shaded protobuf library.
 
 To publish locally run:
+ant maven-build
 ant maven-publish -Dmvn.publish.repo=local
 
 To publish to sonatype run:
