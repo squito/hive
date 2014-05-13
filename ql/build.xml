@@ -317,19 +317,6 @@
       <fileset dir="${build.dir.hive}/common/classes" includes="**/*.class"/>
       <fileset dir="${build.dir.hive}/ql/classes" includes="**/*.class,**/*.properties"/>
       <fileset dir="${build.dir.hive}/serde/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/thrift/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/commons-lang/classes" includes="**/StringUtils.class,**/WordUtils.class"/>
-      <fileset dir="${build.dir.hive}/json/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/avro/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/avro-mapred/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/shims/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/javaewah/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/javolution/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/protobuf-java/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/snappy/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/jackson-core-asl/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/jackson-mapper-asl/classes" includes="**/*.class"/>
-      <fileset dir="${build.dir.hive}/guava/classes" includes="**/*.class"/>
       <manifest>
         <!-- Not putting these in their own manifest section, since that inserts
              a new-line, which breaks the reading of the attributes. -->
