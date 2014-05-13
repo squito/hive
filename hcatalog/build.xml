@@ -226,7 +226,7 @@
         <!--NOTE: old org.apache.hcatalog is intentionally excluded since 0.11 
         version of the JavaDocs is available online-->
         <javadoc overview="${src.dir}/../docs/overview.html"
-                 packagenames="org.apache.hive.hcatalog.*" 
+                 packagenames="org.spark-project.hive.hcatalog.*" 
                  destdir="${build.javadoc}"
                  author="true"
                  version="true"
@@ -251,7 +251,7 @@
                 <fileset dir="webhcat/svr/build/lib/provided" includes="hcatalog-core*.jar"/>
                 <fileset dir="webhcat/svr/build/lib/compile" includes="jetty*.jar,jersey*.jar,commons-exec*.jar,jul-to-slf4j*.jar"/>
             </classpath>
-            <group title="hcatalog" packages="org.apache.hive.hcatalog.*"/>
+            <group title="hcatalog" packages="org.spark-project.hive.hcatalog.*"/>
         </javadoc>
         <record name="${build.dir}/javadoc.log" action="stop"/>
         <condition property="javadoc.warnings">

@@ -22,7 +22,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <parent>
-        <groupId>org.apache.hive.hcatalog</groupId>
+        <groupId>org.spark-project.hive.hcatalog</groupId>
         <artifactId>hcatalog</artifactId>
         <version>0.12.0</version>
         <relativePath>../../pom.xml</relativePath>
@@ -45,7 +45,7 @@
         -->
 
         <dependency>
-            <groupId>org.apache.hive.hcatalog</groupId>
+            <groupId>org.spark-project.hive.hcatalog</groupId>
             <artifactId>hcatalog-core</artifactId>
             <version>${hcatalog.version}</version>
             <scope>provided</scope>

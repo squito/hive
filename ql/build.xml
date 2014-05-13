@@ -86,7 +86,7 @@
       <matches string="${iterate.hive.all}" pattern="beeline"/>
       <then>
         <qtestgen hiveRootDirectory="${hive.root}"
-                  outputDirectory="${test.build.src}/org/apache/hive/beeline/util" 
+                  outputDirectory="${test.build.src}/org.spark-project.hive/beeline/util" 
                   templatePath="${ql.test.template.dir}" template="TestBeeLineDriver.vm" 
                   queryDirectory="${ql.test.query.clientpositive.dir}" 
                   queryFile="${qfile}"
