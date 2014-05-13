@@ -41,7 +41,7 @@ import org.apache.hadoop.io.Text;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.google.protobuf.CodedInputStream;
+import com.google.protobuf_spark.CodedInputStream;
 
 final class ReaderImpl implements Reader {
 

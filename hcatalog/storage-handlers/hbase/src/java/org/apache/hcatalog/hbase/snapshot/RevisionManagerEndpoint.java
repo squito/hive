@@ -45,9 +45,9 @@ import org.apache.hcatalog.hbase.snapshot.RevisionManagerEndpointProtos.Revision
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.protobuf.RpcCallback;
-import com.google.protobuf.RpcController;
-import com.google.protobuf.Service;
+import com.google.protobuf_spark.RpcCallback;
+import com.google.protobuf_spark.RpcController;
+import com.google.protobuf_spark.Service;
 
 /**
  * Implementation of RevisionManager as HBase RPC endpoint. This class will control the lifecycle of
