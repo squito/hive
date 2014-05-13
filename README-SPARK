@@ -1,0 +1,4 @@
+This is a version of Hive 0.12 that uses the Shaded protobuf library.
+
+To build run:
+ant clean protbuf package
