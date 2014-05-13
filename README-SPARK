@@ -1,8 +1,10 @@
 This is a version of Hive 0.12 that uses the Shaded protobuf library.
 
-To publish run:
+To publish locally run:
 ant maven-publish -Dmvn.publish.repo=local
+
+To publish to sonatype run:
+ant maven-publish -Dmvn.publish.repo=staging
 
 To generate the re-written protobuf files (doens't need to be done again):
 ant clean protbuf package
-
