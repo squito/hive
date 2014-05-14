@@ -555,6 +555,8 @@
       <replacevalue>
         &lt;description&gt;Hive is a data warehouse infrastructure built on top of Hadoop see
         http://wiki.apache.org/hadoop/Hive &lt;/description&gt;
+        &lt;developers&gt;
+        &lt;/developers&gt;
         &lt;licenses&gt;
         &lt;license&gt;
         &lt;name&gt;The Apache Software License, Version 2.0&lt;/name&gt;
