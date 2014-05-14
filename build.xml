@@ -1620,11 +1620,11 @@
         input.file="${mvn.pom.dir}/hive-service-${version}.pom"
         output.file="${mvn.pom.dir}/hive-service-${version}.pom.asc"
         gpg.passphrase="${gpg.passphrase}"/>
-    <sign-artifacy
+    <sign-artifact
         input.file="${mvn.jar.dir}/hive-service-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-service-${version}-sources.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
-    <sign-artifacy
+    <sign-artifact
         input.file="${mvn.jar.dir}/hive-service-${version}-javadoc.jar"
         output.file="${mvn.jar.dir}/hive-service-${version}-javadoc.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
