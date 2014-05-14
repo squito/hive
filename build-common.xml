@@ -553,9 +553,15 @@
     <replace file="${build.dir}/pom.xml">
       <replacetoken>&lt;dependencies&gt;</replacetoken>
       <replacevalue>
+        &lt;name&gt;Apache Hive 0.12&lt;/name&gt;
         &lt;description&gt;Hive is a data warehouse infrastructure built on top of Hadoop see
         http://wiki.apache.org/hadoop/Hive &lt;/description&gt;
         &lt;developers&gt;
+        &lt;developer&gt;
+        &lt;id&gt;pwendell&lt;/id&gt;
+        &lt;name&gt;Patrick Wendell&lt;/name&gt;
+        &lt;url&gt;pwendell.com&lt;/url&gt;
+        &lt;/developer&gt;
         &lt;/developers&gt;
         &lt;licenses&gt;
         &lt;license&gt;
