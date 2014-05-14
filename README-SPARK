@@ -5,6 +5,7 @@ ant maven-build
 ant maven-publish -Dmvn.publish.repo=local
 
 To publish to sonatype run:
+ant maven-build # NOTE: MUST BE RUN WITH JAVA 6
 ant maven-publish -Dmvn.publish.repo=staging
 
 To generate the re-written protobuf files (doens't need to be done again):

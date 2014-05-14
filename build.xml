@@ -1123,75 +1123,101 @@
     </exec>
     <exec executable="jar">
       <arg value="-cf" />
-      <arg value="empty-sources.jar" />
+      <arg value="empty.jar" />
       <arg value="foo.txt" />
     </exec>
 
     <!-- copy the jars  -->
     <copy file="${build.dir.hive}/anttasks/hive-anttasks-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-anttasks-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-anttasks-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/beeline/hive-beeline-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-beeline-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-beeline-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/cli/hive-cli-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-cli-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-cli-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/common/hive-common-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-common-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-common-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/contrib/hive-contrib-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-contrib-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-contrib-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/hbase-handler/hive-hbase-handler-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-hbase-handler-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-hbase-handler-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/hwi/hive-hwi-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-hwi-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-hwi-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/jdbc/hive-jdbc-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-jdbc-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-jdbc-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/metastore/hive-metastore-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-metastore-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-metastore-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/ql/hive-exec-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-exec-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-exec-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/serde/hive-serde-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-serde-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-serde-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/service/hive-service-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-service-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-service-${version}-javadoc.jar" />
 
     <copy file="${build.dir.hive}/shims/hive-shims-${version}.jar"
           todir="${mvn.jar.dir}" />
-    <copy file="empty-sources.jar"
+    <copy file="empty.jar"
           tofile="${mvn.jar.dir}/hive-shims-${version}-sources.jar" />
+    <copy file="empty.jar"
+          tofile="${mvn.jar.dir}/hive-shims-${version}-javadoc.jar" />
 
     <!-- copy over maven pom files created using the make-pom target and rename to maven convention -->
     <copy file="${build.dir.hive}/anttasks/pom.xml"
@@ -1271,6 +1297,10 @@
                   type="jar" classifier="sources"/>
           <attach file="${mvn.jar.dir}/hive-${hive.project}-${version}-sources.jar.asc"
                   type="jar.asc" classifier="sources"/>
+          <attach file="${mvn.jar.dir}/hive-${hive.project}-${version}-javadoc.jar"
+                  type="jar" classifier="javadoc"/>
+          <attach file="${mvn.jar.dir}/hive-${hive.project}-${version}-javadoc.jar.asc"
+                  type="jar.asc" classifier="javadoc"/>
         </artifact:deploy>
       </then>
       <elseif>
@@ -1396,6 +1426,10 @@
         input.file="${mvn.jar.dir}/hive-anttasks-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-anttasks-${version}-sources.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-anttasks-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-anttasks-${version}-javadoc.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-beeline -->
     <sign-artifact
@@ -1409,6 +1443,10 @@
     <sign-artifact
         input.file="${mvn.jar.dir}/hive-beeline-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-beeline-${version}-sources.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-beeline-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-beeline-${version}-javadoc.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-cli -->
@@ -1424,6 +1462,10 @@
         input.file="${mvn.jar.dir}/hive-cli-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-cli-${version}-sources.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-cli-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-cli-${version}-javadoc.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-common -->
     <sign-artifact
@@ -1437,6 +1479,10 @@
     <sign-artifact
         input.file="${mvn.jar.dir}/hive-common-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-common-${version}-sources.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-common-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-common-${version}-javadoc.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-contrib -->
@@ -1452,6 +1498,10 @@
         input.file="${mvn.jar.dir}/hive-contrib-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-contrib-${version}-sources.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-contrib-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-contrib-${version}-javadoc.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-exec -->
     <sign-artifact
@@ -1465,6 +1515,10 @@
     <sign-artifact
         input.file="${mvn.jar.dir}/hive-exec-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-exec-${version}-sources.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-exec-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-exec-${version}-javadoc.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-hbase-handler -->
@@ -1480,6 +1534,10 @@
         input.file="${mvn.jar.dir}/hive-hbase-handler-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-hbase-handler-${version}-sources.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-hbase-handler-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-hbase-handler-${version}-javadoc.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-hwi -->
     <sign-artifact
@@ -1493,6 +1551,10 @@
     <sign-artifact
         input.file="${mvn.jar.dir}/hive-hwi-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-hwi-${version}-sources.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-hwi-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-hwi-${version}-javadoc.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-jdbc -->
@@ -1508,6 +1570,10 @@
         input.file="${mvn.jar.dir}/hive-jdbc-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-jdbc-${version}-sources.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-jdbc-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-jdbc-${version}-javadoc.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-metastore -->
     <sign-artifact
@@ -1521,6 +1587,10 @@
     <sign-artifact
         input.file="${mvn.jar.dir}/hive-metastore-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-metastore-${version}-sources.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-metastore-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-metastore-${version}-javadoc.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-serde -->
@@ -1536,6 +1606,10 @@
         input.file="${mvn.jar.dir}/hive-serde-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-serde-${version}-sources.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-serde-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-serde-${version}-javadoc.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-service -->
     <sign-artifact
@@ -1546,9 +1620,13 @@
         input.file="${mvn.pom.dir}/hive-service-${version}.pom"
         output.file="${mvn.pom.dir}/hive-service-${version}.pom.asc"
         gpg.passphrase="${gpg.passphrase}"/>
-    <sign-artifact
+    <sign-artifacy
         input.file="${mvn.jar.dir}/hive-service-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-service-${version}-sources.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifacy
+        input.file="${mvn.jar.dir}/hive-service-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-service-${version}-javadoc.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
 
     <!-- hive-shims -->
@@ -1563,6 +1641,10 @@
     <sign-artifact
         input.file="${mvn.jar.dir}/hive-shims-${version}-sources.jar"
         output.file="${mvn.jar.dir}/hive-shims-${version}-sources.jar.asc"
+        gpg.passphrase="${gpg.passphrase}"/>
+    <sign-artifact
+        input.file="${mvn.jar.dir}/hive-shims-${version}-javadoc.jar"
+        output.file="${mvn.jar.dir}/hive-shims-${version}-javadoc.jar.asc"
         gpg.passphrase="${gpg.passphrase}"/>
   </target>  
   
