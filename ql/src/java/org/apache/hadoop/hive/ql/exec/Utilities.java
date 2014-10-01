@@ -82,8 +82,6 @@ import java.util.zip.Deflater;
 import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
 
-import javax.security.auth.login.LoginException;
-
 import org.antlr.runtime.CommonToken;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang.StringUtils;
@@ -98,7 +96,6 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.PathFilter;
 import org.apache.hadoop.fs.permission.FsPermission;
-import org.apache.hadoop.hive.common.FileUtils;
 import org.apache.hadoop.hive.common.HiveInterruptCallback;
 import org.apache.hadoop.hive.common.HiveInterruptUtils;
 import org.apache.hadoop.hive.common.HiveStatsUtils;
@@ -111,13 +108,13 @@ import org.apache.hadoop.hive.metastore.api.hive_metastoreConstants;
 import org.apache.hadoop.hive.ql.Context;
 import org.apache.hadoop.hive.ql.ErrorMsg;
 import org.apache.hadoop.hive.ql.QueryPlan;
+import org.apache.hadoop.hive.ql.exec.FileSinkOperator.RecordWriter;
 import org.apache.hadoop.hive.ql.exec.mr.ExecDriver;
 import org.apache.hadoop.hive.ql.exec.mr.ExecMapper;
 import org.apache.hadoop.hive.ql.exec.mr.ExecReducer;
 import org.apache.hadoop.hive.ql.exec.mr.MapRedTask;
 import org.apache.hadoop.hive.ql.exec.tez.TezTask;
 import org.apache.hadoop.hive.ql.io.ContentSummaryInputFormat;
-import org.apache.hadoop.hive.ql.io.FSRecordWriter;
 import org.apache.hadoop.hive.ql.io.HiveFileFormatUtils;
 import org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat;
 import org.apache.hadoop.hive.ql.io.HiveInputFormat;
@@ -179,7 +176,6 @@ import org.apache.hadoop.mapred.RecordReader;
 import org.apache.hadoop.mapred.Reporter;
 import org.apache.hadoop.mapred.SequenceFileInputFormat;
 import org.apache.hadoop.mapred.SequenceFileOutputFormat;
-import org.apache.hadoop.security.UserGroupInformation;
 import org.apache.hadoop.util.ReflectionUtils;
 import org.apache.hadoop.util.Shell;
 
@@ -1774,7 +1770,7 @@ public final class Utilities {
 
     for (String p : paths) {
       Path path = new Path(p);
-      FSRecordWriter writer = HiveFileFormatUtils.getRecordWriter(
+      RecordWriter writer = HiveFileFormatUtils.getRecordWriter(
           jc, hiveOutputFormat, outputClass, isCompressed,
           tableInfo.getProperties(), path, reporter);
       writer.close(false);
@@ -3058,7 +3054,7 @@ public final class Utilities {
     String newFile = newDir + File.separator + "emptyFile";
     Path newFilePath = new Path(newFile);
 
-    FSRecordWriter recWriter = outFileFormat.newInstance().getHiveRecordWriter(job, newFilePath,
+    RecordWriter recWriter = outFileFormat.newInstance().getHiveRecordWriter(job, newFilePath,
         Text.class, false, props, null);
     if (dummyRow) {
       // empty files are omitted at CombineHiveInputFormat.
@@ -3382,8 +3378,7 @@ public final class Utilities {
    */
   public static boolean createDirsWithPermission(Configuration conf, Path mkdir,
       FsPermission fsPermission) throws IOException {
-    // this umask is required because by default the hdfs mask is 022 resulting in
-    // all parents getting the fsPermission & !(022) permission instead of fsPermission
+
     boolean recursive = false;
     if (SessionState.get() != null) {
       recursive = SessionState.get().isHiveServerQuery() &&
@@ -3401,19 +3396,43 @@ public final class Utilities {
     return createDirsWithPermission(conf, mkdir, fsPermission, recursive);
   }
 
-  public static boolean createDirsWithPermission(Configuration conf, Path mkdir,
+  private static void resetConfAndCloseFS (Configuration conf, boolean unsetUmask, 
+      String origUmask, FileSystem fs) throws IOException {
+    if (unsetUmask) {
+      if (origUmask != null) {
+        conf.set("fs.permissions.umask-mode", origUmask);
+      } else {
+        conf.unset("fs.permissions.umask-mode");
+      }
+    }
+
+    fs.close();
+  }
+
+  public static boolean createDirsWithPermission(Configuration conf, Path mkdirPath,
       FsPermission fsPermission, boolean recursive) throws IOException {
     String origUmask = null;
+    LOG.debug("Create dirs " + mkdirPath + " with permission " + fsPermission + " recursive " +
+        recursive);
+
     if (recursive) {
       origUmask = conf.get("fs.permissions.umask-mode");
+      // this umask is required because by default the hdfs mask is 022 resulting in
+      // all parents getting the fsPermission & !(022) permission instead of fsPermission
       conf.set("fs.permissions.umask-mode", "000");
     }
-    FileSystem fs = mkdir.getFileSystem(conf);
-    boolean retval = fs.mkdirs(mkdir, fsPermission);
-    if (origUmask != null) {
-      conf.set("fs.permissions.umask-mode", origUmask);
-    } else {
-      conf.unset("fs.permissions.umask-mode");
+    FileSystem fs = ShimLoader.getHadoopShims().getNonCachedFileSystem(mkdirPath.toUri(), conf);
+    boolean retval = false;
+    try {
+      retval = fs.mkdirs(mkdirPath, fsPermission);
+      resetConfAndCloseFS(conf, recursive, origUmask, fs);
+    } catch (IOException ioe) {
+      try {
+        resetConfAndCloseFS(conf, recursive, origUmask, fs);
+      }
+      catch (IOException e) {
+        // do nothing - double failure
+      }
     }
     return retval;
   }
