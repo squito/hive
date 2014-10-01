@@ -36,4 +36,3 @@ import org.apache.hadoop.hive.serde2.SerDeStats;
      */
     SerDeStats getStats();
   }
-}
