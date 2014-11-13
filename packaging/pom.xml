@@ -131,6 +131,7 @@
       <artifactId>hive-hwi</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <!--
     <dependency>
       <groupId>org.spark-project.hive.hcatalog</groupId>
       <artifactId>hive-hcatalog-streaming</artifactId>
@@ -166,6 +167,7 @@
       <artifactId>hive-webhcat-java-client</artifactId>
       <version>${project.version}</version>
     </dependency>
+    -->
   </dependencies>
 
 </project>
